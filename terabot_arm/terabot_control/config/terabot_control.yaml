@@ -1,0 +1,27 @@
+seekur_jr:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+  
+  # Position Controllers ---------------------------------------
+  shoulder_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: shoulder_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  forearm_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: forearm_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  upper_arm_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: upper_arm_joint
+    pid: {p: 100.0, i: 0.01, d: 10.0} 
+  wrist_pitch_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: wrist_pitch_joint
+    pid: {p: 100.0, i: 0.01, d: 10}
+  wrist_roll_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: wrist_roll_joint
+    pid: {p: 100.0, i: 0.01, d: 10}

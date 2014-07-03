@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<robot>
+
+  <!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/seekur_jr</robotNamespace>
+    </plugin>
+  </gazebo>
+
+  <!-- shoulder_link -->
+  <gazebo reference="shoulder_link">
+    <selfCollide>true</selfCollide>
+    <gravity>true</gravity>
+    <mu1>10.0</mu1>
+    <mu2>10.0</mu2>
+    <material>Gazebo/Orange</material>
+  </gazebo>
+
+  <!-- forearm_link -->
+  <gazebo reference="forearm_link">
+    <selfCollide>true</selfCollide>
+    <gravity>true</gravity>
+    <mu1>10.0</mu1>
+    <mu2>10.0</mu2>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <!-- upper_arm_link -->
+  <gazebo reference="upper_arm_link">
+    <selfCollide>true</selfCollide>
+    <gravity>true</gravity>
+    <mu1>10.0</mu1>
+    <mu2>10.0</mu2>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <!-- wrist_pitch_link -->
+  <gazebo reference="wrist_pitch_link">
+    <selfCollide>true</selfCollide>
+    <gravity>true</gravity>
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <!-- wrist_roll_link -->
+  <gazebo reference="wrist_roll_link">
+    <selfCollide>true</selfCollide>
+    <gravity>true</gravity>
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+</robot>

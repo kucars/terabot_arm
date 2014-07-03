@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<robot>
+  <property name="PI" value="3.1415926535897931" />
+  <property name="BASE" value="0.001" />
+  <property name="link_radius" value="0.02" />
+  <property name="VELOCITY_LIMIT_SCALE" value="0.6" />
+
+  <property name="forearm_link_x_offset" value="0.0125" />
+  <property name="forearm_link_y_offset" value="0.01" />
+
+  <property name="upper_arm_link_x_offset" value="-0.0124" />
+  <property name="upper_arm_link_y_offset" value="0.01" />
+
+  <property name="wrist_pitch_link_x_offset" value="0.006" />
+  <property name="wrist_pitch_link_y_offset" value="-0.02" />
+
+  <property name="wrist_roll_joint_x_offset" value="0.10" />
+  <property name="wrist_roll_joint_z_offset" value="0.04" />
+
+  <property name="wrist_roll_link_x_offset" value="0.004" />
+  <property name="wrist_roll_link_y_offset" value="-0.0023" />
+
+  <property name="gripper_l_finger_joint_x_offset" value="0.03" />
+</robot>
+
