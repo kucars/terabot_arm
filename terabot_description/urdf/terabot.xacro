@@ -1,0 +1,282 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+  <!-- Import all common definitions -->
+  <xacro:include filename="$(find terabot_description)/urdf/common.xacro" />
+
+
+        <material name="Blue">
+            <color rgba="0.0 0.0 1.0 1.0"/>
+        </material>
+
+        <material name="Gray">
+            <color rgba="0.25 0.25 0.25 1.0"/>
+        </material>
+
+        <material name="Black">
+            <color rgba="1 1 1 1.0"/>
+        </material>
+  <link name="arm_base_link">
+    <visual>
+      <origin xyz="0 0 ${(80/2)*BASE}" rpy="0 ${-PI/2} ${PI/2}" />
+      <geometry>
+        <mesh filename="package://terabot_description/meshes/base.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="Gray"/>
+    </visual>
+
+    <collision>
+       <geometry>
+        <cylinder length="${(229/2)*BASE}" radius="${2*link_radius}"/>
+      </geometry>
+      <origin xyz="0 0 ${(229/4)*BASE}"/>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+	  ixx="1.0" ixy="0.0" ixz="0.0"
+	  iyy="1.0" iyz="0.0"
+	  izz="1.0"/>
+    </inertial>
+  </link>
+
+  <joint name="shoulder_joint" type="revolute">
+    <origin xyz="0 0 ${(80)*BASE}"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="${-170*(PI/180)}" upper="${170*(PI/180)}" velocity="0.5"/>
+    <parent link="arm_base_link"/>
+    <child link="shoulder_link"/>
+    <dynamics damping="0.001"/>
+  </joint>
+
+  <link name="shoulder_link">
+    <visual>
+      <origin xyz="0 0 ${-(80/2)*BASE}" rpy="0 ${-pi/2} ${pi/2}" />
+      <geometry>
+        <mesh filename="package://terabot_description/meshes/shoulder.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 ${-(80/2)*BASE}" rpy="0 ${-pi/2} ${pi/2}" />
+      <geometry>
+        <mesh filename="package://terabot_description/meshes/shoulder.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="Blue"/>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+	  ixx="1.0" ixy="0.0" ixz="0.0"
+	  iyy="1.0" iyz="0.0"
+	  izz="1.0"/>
+    </inertial>
+  </link>
+
+  <joint name="forearm_joint" type="revolute">
+    <origin xyz="0 0 ${(229/2)*BASE}" rpy="${PI/2} 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="${-35*(PI/180)}" upper="${90*(PI/180)}" velocity="0.5"/>
+    <parent link="shoulder_link"/>
+    <child link="forearm_link"/>
+    <dynamics damping="0.001"/>
+  </joint>
+
+  <link name="forearm_link">
+    <visual>
+      <origin xyz="${-(229/2)*BASE+forearm_link_x_offset} ${-(229/2)*BASE+forearm_link_y_offset} 0" rpy="0 0 ${PI/4}" />
+      <geometry>
+        <mesh filename="package://terabot_description/meshes/forearm.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+
+    <collision>
+      <origin xyz="${-(229/2)*BASE+forearm_link_x_offset} ${-(229/2)*BASE+forearm_link_y_offset} 0" rpy="0 0 ${PI/4}" />
+      <geometry>
+        <mesh filename="package://terabot_description/meshes/forearm.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="Blue"/>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="10"/>
+      <inertia
+	  ixx="0.01" ixy="0.0" ixz="0.0"
+	  iyy="0.01" iyz="0.0"
+	  izz="0.01"/>
+    </inertial>
+  </link>
+
+  <joint name="upper_arm_joint" type="revolute">
+    <origin xyz="${419.1*BASE} 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="${-170*(PI/180)}" upper="${162*(PI/180)}" velocity="0.5"/>
+    <parent link="forearm_link"/>
+    <child link="upper_arm_link"/>
+    <dynamics damping="0.007"/>
+  </joint>
+
+  <link name="upper_arm_link">
+    <visual>
+      <origin xyz="${(229/2)*BASE+upper_arm_link_x_offset} ${-419.1*BASE-(229/2)*BASE+upper_arm_link_y_offset} 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://terabot_description/meshes/upper_arm.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+
+
+    <collision>
+      <geometry>
+        <cylinder length="${364.49*BASE}" radius="0.05"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="10"/>
+      <inertia
+	  ixx="0.01" ixy="0.0" ixz="0.0"
+	  iyy="0.01" iyz="0.0"
+	  izz="0.01"/>
+    </inertial>
+  </link>
+
+  <joint name="wrist_pitch_joint" type="revolute">
+    <origin xyz="${364.49*BASE} 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="${-170*(PI/180)}" upper="${170*(PI/180)}" velocity="0.5"/>
+    <parent link="upper_arm_link"/>
+    <child link="wrist_pitch_link"/>
+    <dynamics damping="0.7"/>
+  </joint>
+
+  <link name="wrist_pitch_link">
+    <visual>
+      <origin xyz="${(364.49/2)*BASE+wrist_pitch_link_x_offset} ${-419.1*BASE-(229/2)*BASE+wrist_pitch_link_y_offset} 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://terabot_description/meshes/wrist_pitch.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+
+    <collision>
+      <geometry>
+        <cylinder length="${364.49*BASE}" radius="0.05"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia
+	  ixx="1.0" ixy="0.0" ixz="0.0"
+	  iyy="1.0" iyz="0.0"
+	  izz="1.0"/>
+    </inertial>
+  </link>
+
+  <joint name="wrist_roll_joint" type="revolute">
+    <origin xyz="${88*BASE+wrist_roll_joint_x_offset} ${wrist_roll_joint_z_offset} 0" rpy="0 ${PI/2} 0"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="${-170*(PI/180)}" upper="${170*(PI/180)}" velocity="0.5"/>
+    <parent link="wrist_pitch_link"/>
+    <child link="wrist_roll_link"/>
+    <dynamics damping="0.7"/>
+  </joint>
+
+  <link name="wrist_roll_link">
+    <visual>
+      <origin xyz="${-419.1*BASE+wrist_roll_link_x_offset} ${-419.1*BASE+wrist_roll_link_y_offset} 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://terabot_description/meshes/wrist_roll.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia
+	  ixx="1.0" ixy="0.0" ixz="0.0"
+	  iyy="1.0" iyz="0.0"
+	  izz="1.0"/>
+    </inertial>
+  </link>
+
+  <!--	<joint name="gripper_l_finger_joint" type="fixed">
+    <origin xyz="${gripper_l_finger_joint_x_offset} 0 0" rpy="0 -${PI/2} ${-PI/2}"/>
+    <limit effort="1000.0" lower="${-170*(PI/180)}" upper="${170*(PI/180)}" velocity="0.5"/>
+    <parent link="wrist_roll_link"/>
+    <child link="gripper_l_finger_link"/>
+  </joint>
+
+  <link name="gripper_l_finger_link">
+    <visual>
+      <origin xyz="${-419.1*BASE+wrist_roll_link_x_offset} ${-419.1*BASE+wrist_roll_link_y_offset} 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://terabot_description/meshes/left_finger.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="Blue"/>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia
+	  ixx="1.0" ixy="0.0" ixz="0.0"
+	  iyy="1.0" iyz="0.0"
+	  izz="1.0"/>
+    </inertial>
+  </link>-->
+
+
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="shoulder_joint"/>
+    <actuator name="motor1">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="forearm_joint"/>
+    <actuator name="motor2">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran3">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="upper_arm_joint"/>
+    <actuator name="motor3">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran4">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wrist_pitch_joint"/>
+    <actuator name="motor4">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran5">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wrist_roll_joint"/>
+    <actuator name="motor5">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+</robot>
