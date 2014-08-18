@@ -23,8 +23,8 @@ include_directories(
   ${catkin_INCLUDE_DIRS} 
   ${catkin_SRC_DIRS} 
   /usr/local/Aria/include/
-  /home/marbm/catkin_ws_sdp/src/seekur_comp/ArTerabotArm-2.8.0/include
-  /home/marbm/catkin_ws_sdp/src/seekur_comp/terabot_arm/terabot_arm_hardware_interface/include/
+  ${CMAKE_CURRENT_LIST_DIR}/../terabot_arm_driver/include
+  ${CMAKE_CURRENT_LIST_DIR}/include/
 )
 
 #########################
@@ -32,9 +32,9 @@ include_directories(
 
 add_executable(Robot src/Robot.cpp src/TerabotArmInterface.cpp) 
 
-
-link_directories(${catkin_LIBRARIES}/usr/local/Aria/lib /home/marbm/catkin_ws_sdp/src/seekur_comp/ArTerabotArm-2.8.0/lib ${terabot_arm_hardware_interface_SOURCE_DIR}/ArTerabotArm-2.8.0/lib)
-target_link_libraries(Robot ${catkin_LIBRARIES} /usr/local/Aria/lib/libAria.so /home/marbm/catkin_ws_sdp/src/seekur_comp/ArTerabotArm-2.8.0/lib/libArTerabotArm.so)
+message("The path is: ${CMAKE_CURRENT_LIST_DIR}")
+link_directories(${catkin_LIBRARIES}/usr/local/Aria/lib ${CMAKE_CURRENT_LIST_DIR}/../terabot_arm_driver/lib)
+target_link_libraries(Robot ${catkin_LIBRARIES} /usr/local/Aria/lib/libAria.so ${CMAKE_CURRENT_LIST_DIR}/../terabot_arm_driver/lib/libArTerabotArm.so)
 
 
 install(PROGRAMS
