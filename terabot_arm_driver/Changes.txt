@@ -1,0 +1,31 @@
+
+ArTerabotArm
+Version 2.8.0
+August 22, 2013
+------------------
+* Built with ARIA 2.8.0
+
+ArTerabotArm
+Version 2.7.6
+March 29, 2013
+------------------
+* Built with ARIA 2.7.6
+
+ArTerabotArm
+2.7.5.2
+October 3, 2012
+------------------
+ * Built with ARIA 2.7.5.2
+ * Initial release of ArTerabotArm. Supports the following features:
+    * Power on and enable the arm
+    * Request one or all arm joints to move to position(s)
+    * Set speed for arm movements
+    * Request that all movement stop (halt)
+    * Set joint limits (minimum and maximum positions)
+    * Open and close the gripper
+    * Get current joint positions
+    * Get joint status flags (moving, stopped, error, etc.)
+    * Can forward any data received from the SC master controller to the arm.
+
+
+

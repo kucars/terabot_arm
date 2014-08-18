@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ArTerabotArm-vc2010", "ArTerabotArm-vc2010.vcxproj", "{0752BCFF-B761-4C7C-9815-EB43E0F290ED}"
+	ProjectSection(ProjectDependencies) = postProject
+		{606257AE-E882-4C66-84C0-72331642D09F} = {606257AE-E882-4C66-84C0-72331642D09F}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AriaDLL", "..\src\AriaDLL-vc2010.vcxproj", "{606257AE-E882-4C66-84C0-72331642D09F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ipthru", "..\examples\ipthru-vc2010.vcxproj", "{B0CD9146-122F-49FD-A12A-7A970514DFB1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "terabotArmDemo-vc2010", "examples\terabotArmDemo-vc2010.vcxproj", "{401AF6B3-1E4E-4686-9C29-B3D4CEA03EB5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{606257AE-E882-4C66-84C0-72331642D09F} = {606257AE-E882-4C66-84C0-72331642D09F}
+		{0752BCFF-B761-4C7C-9815-EB43E0F290ED} = {0752BCFF-B761-4C7C-9815-EB43E0F290ED}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0752BCFF-B761-4C7C-9815-EB43E0F290ED}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0752BCFF-B761-4C7C-9815-EB43E0F290ED}.Debug|Win32.Build.0 = Debug|Win32
+		{0752BCFF-B761-4C7C-9815-EB43E0F290ED}.Release|Win32.ActiveCfg = Release|Win32
+		{0752BCFF-B761-4C7C-9815-EB43E0F290ED}.Release|Win32.Build.0 = Release|Win32
+		{606257AE-E882-4C66-84C0-72331642D09F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{606257AE-E882-4C66-84C0-72331642D09F}.Debug|Win32.Build.0 = Debug|Win32
+		{606257AE-E882-4C66-84C0-72331642D09F}.Release|Win32.ActiveCfg = Release|Win32
+		{606257AE-E882-4C66-84C0-72331642D09F}.Release|Win32.Build.0 = Release|Win32
+		{B0CD9146-122F-49FD-A12A-7A970514DFB1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B0CD9146-122F-49FD-A12A-7A970514DFB1}.Debug|Win32.Build.0 = Debug|Win32
+		{B0CD9146-122F-49FD-A12A-7A970514DFB1}.Release|Win32.ActiveCfg = Release|Win32
+		{B0CD9146-122F-49FD-A12A-7A970514DFB1}.Release|Win32.Build.0 = Release|Win32
+		{401AF6B3-1E4E-4686-9C29-B3D4CEA03EB5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{401AF6B3-1E4E-4686-9C29-B3D4CEA03EB5}.Debug|Win32.Build.0 = Debug|Win32
+		{401AF6B3-1E4E-4686-9C29-B3D4CEA03EB5}.Release|Win32.ActiveCfg = Release|Win32
+		{401AF6B3-1E4E-4686-9C29-B3D4CEA03EB5}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
