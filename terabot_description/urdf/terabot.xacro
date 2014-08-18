@@ -2,19 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro"> 
   <!-- Import all common definitions -->
   <xacro:include filename="$(find terabot_description)/urdf/common.xacro" />
-
-
-        <material name="Blue">
-            <color rgba="0.0 0.0 1.0 1.0"/>
-        </material>
-
-        <material name="Gray">
-            <color rgba="0.25 0.25 0.25 1.0"/>
-        </material>
-
-        <material name="Black">
-            <color rgba="1 1 1 1.0"/>
-        </material>
+  <xacro:include filename="$(find terabot_description)/urdf/materials.xacro" />
   <link name="arm_base_link">
     <visual>
       <origin xyz="0 0 ${(80/2)*BASE}" rpy="0 ${-PI/2} ${PI/2}" />
@@ -181,8 +169,8 @@
     </inertial>
   </link>
 
-  <joint name="wrist_roll_joint" type="revolute">
-    <origin xyz="${88*BASE+wrist_roll_joint_x_offset} ${wrist_roll_joint_z_offset} 0" rpy="0 ${PI/2} 0"/>
+ <joint name="wrist_roll_joint" type="revolute">
+    <origin xyz="${50*BASE+0.013+wrist_roll_joint_x_offset} ${wrist_roll_joint_z_offset} 0" rpy="0 ${PI/2} 0"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000.0" lower="${-170*(PI/180)}" upper="${170*(PI/180)}" velocity="0.5"/>
     <parent link="wrist_pitch_link"/>
@@ -192,11 +180,38 @@
 
   <link name="wrist_roll_link">
     <visual>
-      <origin xyz="${-419.1*BASE+wrist_roll_link_x_offset} ${-419.1*BASE+wrist_roll_link_y_offset} 0" rpy="0 0 0" />
+      <origin xyz="-0.0322 ${0.4*BASE+wrist_roll_link_y_offset} ${-18.5*BASE+wrist_roll_link_x_offset}" rpy="0 -${PI} ${3*PI/2}" />
       <geometry>
         <mesh filename="package://terabot_description/meshes/wrist_roll.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="Blue"/>
+      <material name="black"/>
+    </visual>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia
+ixx="1.0" ixy="0.0" ixz="0.0"
+iyy="1.0" iyz="0.0"
+izz="1.0"/>
+    </inertial>
+  </link>
+
+  <joint name="gripper_l_finger_joint" type="revolute">
+    <origin xyz="${gripper_l_finger_joint_x_offset} 0 -0.0145" rpy="0 ${3*PI/2} ${3*PI/2}"/>
+    <limit effort="1000.0" lower="0.0" upper="${115*(PI/180)}" velocity="0.5"/>
+    <axis xyz="0 0 -1"/>
+
+    <parent link="wrist_roll_link"/>
+    <child link="gripper_l_finger_link"/>
+  </joint>
+
+  <link name="gripper_l_finger_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="-${3*PI/2.35} -${PI/2} ${3*PI/2}" />
+      <geometry>
+        <mesh filename="package://terabot_description/meshes/left_finger.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="Grey"/>
     </visual>
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -208,20 +223,22 @@
     </inertial>
   </link>
 
-  <!--	<joint name="gripper_l_finger_joint" type="fixed">
-    <origin xyz="${gripper_l_finger_joint_x_offset} 0 0" rpy="0 -${PI/2} ${-PI/2}"/>
-    <limit effort="1000.0" lower="${-170*(PI/180)}" upper="${170*(PI/180)}" velocity="0.5"/>
+   <joint name="gripper_r_finger_joint" type="revolute">
+    <origin xyz="${gripper_r_finger_joint_x_offset} 0 -0.0145" rpy="0 ${3*PI/2} ${3*PI/2}"/>
+    <limit effort="1000.0" lower="0.0" upper="${115*(PI/180)}" velocity="0.5"/>
+    <axis xyz="0 0 1"/>
+    <mimic joint="gripper_l_finger_joint"/>
     <parent link="wrist_roll_link"/>
-    <child link="gripper_l_finger_link"/>
+    <child link="gripper_r_finger_link"/>
   </joint>
 
-  <link name="gripper_l_finger_link">
+  <link name="gripper_r_finger_link">
     <visual>
-      <origin xyz="${-419.1*BASE+wrist_roll_link_x_offset} ${-419.1*BASE+wrist_roll_link_y_offset} 0" rpy="0 0 0" />
+      <origin xyz="-0.0355 -0.0415 0" rpy="-${3*PI/1.74} -${PI/2} ${3*PI/2}" />
       <geometry>
-        <mesh filename="package://terabot_description/meshes/left_finger.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://terabot_description/meshes/right_finger.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="Blue"/>
+      <material name="Grey"/>
     </visual>
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -231,7 +248,8 @@
 	  iyy="1.0" iyz="0.0"
 	  izz="1.0"/>
     </inertial>
-  </link>-->
+  </link>
+
 
 
   <transmission name="tran1">

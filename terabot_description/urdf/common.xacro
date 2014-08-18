@@ -20,6 +20,7 @@
   <property name="wrist_roll_link_x_offset" value="0.004" />
   <property name="wrist_roll_link_y_offset" value="-0.0023" />
 
-  <property name="gripper_l_finger_joint_x_offset" value="0.03" />
+  <property name="gripper_l_finger_joint_x_offset" value="-0.0321" />
+  <property name="gripper_r_finger_joint_x_offset" value="0.0229" />
 </robot>
 
