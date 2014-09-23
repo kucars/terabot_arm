@@ -1,8 +1,0 @@
-moveit_setup_assistant_config:
-  URDF:
-    package: seekur_jr_description
-    relative_path: robots/seekur_jr_with_arm.urdf.xacro
-  SRDF:
-    relative_path: config/seekur_jr.srdf
-  CONFIG:
-    generated_timestamp: 1411199714
