@@ -93,19 +93,19 @@ TerabotArmInterface::~TerabotArmInterface()
 bool TerabotArmInterface::init()
 {
     // connect and register the joint state interface
-    hardware_interface::JointStateHandle state_handle_j1("j1", &pos[0], &vel[0], &eff[0]);
+    hardware_interface::JointStateHandle state_handle_j1("shoulder_joint", &pos[0], &vel[0], &eff[0]);
     jnt_state_interface.registerHandle(state_handle_j1);
 
-    hardware_interface::JointStateHandle state_handle_j2("j2", &pos[1], &vel[1], &eff[1]);
+    hardware_interface::JointStateHandle state_handle_j2("forearm_joint", &pos[1], &vel[1], &eff[1]);
     jnt_state_interface.registerHandle(state_handle_j2);
 
-    hardware_interface::JointStateHandle state_handle_j3("j3", &pos[2], &vel[2], &eff[2]);
+    hardware_interface::JointStateHandle state_handle_j3("upper_arm_joint", &pos[2], &vel[2], &eff[2]);
     jnt_state_interface.registerHandle(state_handle_j3);
 
-    hardware_interface::JointStateHandle state_handle_j4("j4", &pos[3], &vel[3], &eff[3]);
+    hardware_interface::JointStateHandle state_handle_j4("wrist_pitch_joint", &pos[3], &vel[3], &eff[3]);
     jnt_state_interface.registerHandle(state_handle_j4);
 
-    hardware_interface::JointStateHandle state_handle_j5("j5", &pos[4], &vel[4], &eff[4]);
+    hardware_interface::JointStateHandle state_handle_j5("wrist_roll_joint", &pos[4], &vel[4], &eff[4]);
     jnt_state_interface.registerHandle(state_handle_j5);
 
     hardware_interface::JointStateHandle state_handle_j6("j6", &pos[5], &vel[5], &eff[5]);
@@ -114,19 +114,19 @@ bool TerabotArmInterface::init()
     registerInterface(&jnt_state_interface);
 
     // connect and register the joint position interface
-    hardware_interface::JointHandle pos_handle_j1(jnt_state_interface.getHandle("j1"), &cmd[0]);
+    hardware_interface::JointHandle pos_handle_j1(jnt_state_interface.getHandle("shoulder_joint"), &cmd[0]);
     jnt_pos_interface.registerHandle(pos_handle_j1);
 
-    hardware_interface::JointHandle pos_handle_j2(jnt_state_interface.getHandle("j2"), &cmd[1]);
+    hardware_interface::JointHandle pos_handle_j2(jnt_state_interface.getHandle("forearm_joint"), &cmd[1]);
     jnt_pos_interface.registerHandle(pos_handle_j2);
 
-    hardware_interface::JointHandle pos_handle_j3(jnt_state_interface.getHandle("j3"), &cmd[2]);
+    hardware_interface::JointHandle pos_handle_j3(jnt_state_interface.getHandle("upper_arm_joint"), &cmd[2]);
     jnt_pos_interface.registerHandle(pos_handle_j3);
 
-    hardware_interface::JointHandle pos_handle_j4(jnt_state_interface.getHandle("j4"), &cmd[3]);
+    hardware_interface::JointHandle pos_handle_j4(jnt_state_interface.getHandle("wrist_pitch_joint"), &cmd[3]);
     jnt_pos_interface.registerHandle(pos_handle_j4);
 
-    hardware_interface::JointHandle pos_handle_j5(jnt_state_interface.getHandle("j5"), &cmd[4]);
+    hardware_interface::JointHandle pos_handle_j5(jnt_state_interface.getHandle("wrist_roll_joint"), &cmd[4]);
     jnt_pos_interface.registerHandle(pos_handle_j5);
 
     hardware_interface::JointHandle pos_handle_j6(jnt_state_interface.getHandle("j6"), &cmd[5]);
@@ -140,19 +140,19 @@ bool TerabotArmInterface::init(hardware_interface::JointStateInterface & jnt_sta
 {
 
     // connect and register the joint state interface
-    hardware_interface::JointStateHandle state_handle_j1("j1", &pos[0], &vel[0], &eff[0]);
+    hardware_interface::JointStateHandle state_handle_j1("shoulder_joint", &pos[0], &vel[0], &eff[0]);
     jnt_state_interface_.registerHandle(state_handle_j1);
 
-    hardware_interface::JointStateHandle state_handle_j2("j2", &pos[1], &vel[1], &eff[1]);
+    hardware_interface::JointStateHandle state_handle_j2("forearm_joint", &pos[1], &vel[1], &eff[1]);
     jnt_state_interface_.registerHandle(state_handle_j2);
 
-    hardware_interface::JointStateHandle state_handle_j3("j3", &pos[2], &vel[2], &eff[2]);
+    hardware_interface::JointStateHandle state_handle_j3("upper_arm_joint", &pos[2], &vel[2], &eff[2]);
     jnt_state_interface_.registerHandle(state_handle_j3);
 
-    hardware_interface::JointStateHandle state_handle_j4("j4", &pos[3], &vel[3], &eff[3]);
+    hardware_interface::JointStateHandle state_handle_j4("wrist_pitch_joint", &pos[3], &vel[3], &eff[3]);
     jnt_state_interface_.registerHandle(state_handle_j4);
 
-    hardware_interface::JointStateHandle state_handle_j5("j5", &pos[4], &vel[4], &eff[4]);
+    hardware_interface::JointStateHandle state_handle_j5("wrist_roll_joint", &pos[4], &vel[4], &eff[4]);
     jnt_state_interface_.registerHandle(state_handle_j5);
 
     hardware_interface::JointStateHandle state_handle_j6("j6", &pos[5], &vel[5], &eff[5]);
@@ -161,19 +161,19 @@ bool TerabotArmInterface::init(hardware_interface::JointStateInterface & jnt_sta
     registerInterface(&jnt_state_interface_);
 
     // connect and register the joint position interface
-    hardware_interface::JointHandle pos_handle_j1(jnt_state_interface_.getHandle("j1"), &cmd[0]);
+    hardware_interface::JointHandle pos_handle_j1(jnt_state_interface_.getHandle("shoulder_joint"), &cmd[0]);
     jnt_pos_interface_.registerHandle(pos_handle_j1);
 
-    hardware_interface::JointHandle pos_handle_j2(jnt_state_interface_.getHandle("j2"), &cmd[1]);
+    hardware_interface::JointHandle pos_handle_j2(jnt_state_interface_.getHandle("forearm_joint"), &cmd[1]);
     jnt_pos_interface_.registerHandle(pos_handle_j2);
 
-    hardware_interface::JointHandle pos_handle_j3(jnt_state_interface_.getHandle("j3"), &cmd[2]);
+    hardware_interface::JointHandle pos_handle_j3(jnt_state_interface_.getHandle("upper_arm_joint"), &cmd[2]);
     jnt_pos_interface_.registerHandle(pos_handle_j3);
 
-    hardware_interface::JointHandle pos_handle_j4(jnt_state_interface_.getHandle("j4"), &cmd[3]);
+    hardware_interface::JointHandle pos_handle_j4(jnt_state_interface_.getHandle("wrist_pitch_joint"), &cmd[3]);
     jnt_pos_interface_.registerHandle(pos_handle_j4);
 
-    hardware_interface::JointHandle pos_handle_j5(jnt_state_interface_.getHandle("j5"), &cmd[4]);
+    hardware_interface::JointHandle pos_handle_j5(jnt_state_interface_.getHandle("wrist_roll_joint"), &cmd[4]);
     jnt_pos_interface_.registerHandle(pos_handle_j5);
 
     hardware_interface::JointHandle pos_handle_j6(jnt_state_interface_.getHandle("j6"), &cmd[5]);
