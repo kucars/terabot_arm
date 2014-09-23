@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+<arg name="model" default="$(find seekur_jr_description)/robots/seekur_jr_with_arm.urdf.xacro"/>
+<arg name="gui" default="False" />
+<param name="/terabot_arm/robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+ <!-- param name="/mitsubishi_arm/mitsubishi_port" value="/dev/ttyUSB1" / -->
+<node ns="/terabot_arm" name="terabot_arm_hardware_interface" pkg="terabot_arm_hardware_interface" type="Robot" respawn="false" /><!--output="screen"/>-->
+</launch>
