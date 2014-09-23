@@ -4,13 +4,13 @@
   <rosparam file="$(find terabot_control)/config/terabot_control.yaml" command="load"/>
 
   <!-- load the controllers -->
-  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
-    output="screen" ns="/terabot" args="shoulder_joint_position_controller forearm_joint_position_controller upper_arm_joint_position_controller wrist_pitch_joint_position_controller wrist_roll_joint_position_controller"/>
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/terabot_arm" args="joint_state_controller terabot_arm_trajectory_controller"/>
 
   <!-- convert joint states to TF transforms for rviz, etc -->
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
-    respawn="false" output="screen">
-    <remap from="/joint_states" to="/terabot/joint_states" />
+  <node ns="/terabot_arm" name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="true" output="screen">
+    <!-- remap from="/joint_states" to="/terabot_arm/joint_states" / -->
   </node>
 
 </launch>
+
