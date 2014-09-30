@@ -23,7 +23,7 @@
 
 #define PI_ 3.14159265359
 #define DEG_TO_RAD PI_/180.0
-
+#define RAD_TO_DEG 180.0/PI_
 /*bool isEqual(double & a, double & b, double threshold)
 {
     return fabs(a-b)<threshold;
