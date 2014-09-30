@@ -32,7 +32,7 @@
   <joint name="shoulder_joint" type="revolute">
     <origin xyz="0 0 ${(80)*BASE}" rpy="0 0 ${-pi}"/>
     <axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="${170*(PI/180)}" upper="${-170*(PI/180)}" velocity="0.5"/>
+    <limit effort="1000.0" lower="${-170*(PI/180)}" upper="${170*(PI/180)}" velocity="0.5"/>
     <parent link="arm_base_link"/>
     <child link="shoulder_link"/>
     <dynamics damping="0.001"/>
