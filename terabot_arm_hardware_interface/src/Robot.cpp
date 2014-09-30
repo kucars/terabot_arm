@@ -20,7 +20,7 @@ int main(int argc, char** argv)
 
     ros::Time previous=ros::Time::now();
 
-    ros::Rate rate(1000.0);
+    ros::Rate rate(10.0);
     while (ros::ok())
     {
         ros::Duration period;
