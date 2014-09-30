@@ -17,7 +17,7 @@ clean: FORCE
   
 
 ./lib/libArTerabotArm.so: obj/ArTerabotArm.o /usr/local/Aria/lib/libAria.so
-	$(CXX) -shared -o $@ $< -L./lib -L/usr/local/Aria/lib -lAria -ldl -lrt -lm 
+	$(CXX) -shared -o $@ $< -L./lib -L/usr/local/Aria/lib -lAria -lpthread -ldl -lrt -lm -pthread
 
 ./lib/libArTerabotArm.a: obj/ArTerabotArm.o ./lib/libAria.a
 	ar -cr $@ obj/ArTerabotArm.o
@@ -43,19 +43,19 @@ obj/%.o: src/%.cpp
 	$(CXX) -c $(CFLAGS) -o $@ $<
 
 examples/%: examples/%.cpp ./lib/libArTerabotArm.so /usr/local/Aria/lib/libAria.so
-	$(CXX) $(CFLAGS) -o $@ $< -L./lib -L/usr/local/Aria/lib -lArTerabotArm -lAria -ldl -lrt -lm 
+	$(CXX) $(CFLAGS) -o $@ $< -L./lib -L/usr/local/Aria/lib -lArTerabotArm -lAria -ldl -lrt -lm -pthread 
 
 examples/mogsAndArmServer: examples/mogsAndArmServer.cpp ./lib/libArTerabotArm.so /usr/local/Aria/lib/libAria.so ./lib/libArNetworking.so ../../Arnl/lib/libMogs.so ../../Arnl/lib/libBaseArnl.so
 	$(CXX) $(CFLAGS) -I../ArNetworking/include -I../../Arnl/include -o $@ $< -L./lib -L../../Arnl/lib -lArTerabotArm -lMogs -lBaseArnl -lArNetworking -lAria -ldl -lrt -lm
 
 examples/mogsAndArmServerStatic: examples/mogsAndArmServer.cpp ./lib/libArTerabotArm.a ./lib/libAria.a ./lib/libArNetworking.a ../../Arnl/lib/libMogs.a ../../Arnl/lib/libBaseArnl.a
-	$(CXX) $(CFLAGS) -I../ArNetworking/include -I../../Arnl/include -o $@ $^ -L./lib -L../../Arnl/lib -ldl -lrt -lm
+	$(CXX) $(CFLAGS) -I../ArNetworking/include -I../../Arnl/include -o $@ $^ -L./lib -L../../Arnl/lib -ldl -lrt -lm -pthread
 
 ../../Arnl/%: FORCE
 	$(MAKE) -C ../../Arnl $*
 
 examples/%Static: examples/%.cpp ./lib/libArTerabotArm.a ./lib/libAria.a
-	$(CXX) $(CFLAGS) -o $@ $^ -ldl -lrt -lm
+	$(CXX) $(CFLAGS) -o $@ $^ -ldl -lrt -lm -pthread
 	strip $@
 
 include Makefile.dep

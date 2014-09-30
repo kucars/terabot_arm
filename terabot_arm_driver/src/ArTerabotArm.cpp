@@ -436,7 +436,7 @@ AREXPORT void ArTerabotArm::readMaster(int timeout)
 			}
 			else if(x == 3)
 				printf("DATA: ");
-			printf("0x%hhx (%d) ", buf[i]);
+			printf("0x%hhx (%d) ", buf[i],0);
 		}
 		++x;
 	}
