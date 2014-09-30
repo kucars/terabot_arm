@@ -9,7 +9,7 @@
       <geometry>
         <mesh filename="package://terabot_description/meshes/base.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="Gray"/>
+      <material name="orange"/>
     </visual>
 
     <collision>
@@ -44,7 +44,7 @@
       <geometry>
         <mesh filename="package://terabot_description/meshes/shoulder.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="Blue"/>
+      <material name="orange"/>
     </visual>
 
     <collision>
@@ -52,7 +52,7 @@
       <geometry>
         <mesh filename="package://terabot_description/meshes/shoulder.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="Blue"/>
+      <material name="orange"/>
     </collision>
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -79,7 +79,7 @@
       <geometry>
         <mesh filename="package://terabot_description/meshes/forearm.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="Blue"/>
+      <material name="orange"/>
     </visual>
 
     <collision>
@@ -87,7 +87,7 @@
       <geometry>
         <mesh filename="package://terabot_description/meshes/forearm.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="Blue"/>
+      <material name="orange"/>
     </collision>
 
     <inertial>
@@ -115,7 +115,7 @@
       <geometry>
         <mesh filename="package://terabot_description/meshes/upper_arm.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="Blue"/>
+      <material name="orange"/>
     </visual>
 
 
@@ -150,7 +150,7 @@
       <geometry>
         <mesh filename="package://terabot_description/meshes/wrist_pitch.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="Blue"/>
+      <material name="orange"/>
     </visual>
 
      <visual>
@@ -158,7 +158,7 @@
       <geometry>
         <mesh filename="package://terabot_description/meshes/arm_camera.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="red"/>
+      <material name="orange"/>
     </visual>
 
     <collision>
@@ -193,7 +193,7 @@
       <geometry>
         <mesh filename="package://terabot_description/meshes/wrist_roll.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="black"/>
+      <material name="orange"/>
     </visual>
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -220,7 +220,7 @@ izz="1.0"/>
       <geometry>
         <mesh filename="package://terabot_description/meshes/left_finger.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="Grey"/>
+      <material name="red"/>
     </visual>
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -247,7 +247,7 @@ izz="1.0"/>
       <geometry>
         <mesh filename="package://terabot_description/meshes/right_finger.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="Grey"/>
+      <material name="red"/>
     </visual>
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
