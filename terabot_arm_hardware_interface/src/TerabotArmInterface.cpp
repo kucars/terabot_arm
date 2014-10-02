@@ -193,7 +193,7 @@ void TerabotArmInterface::readHW()
     // READ JOINTS STATe
     float* positions;
     positions = arm.getArmPos();
-
+   ROS_INFO("Reading current postion POSITION");
     std::cout << "CURRENT POSITION DEGREES: ";
     for(int i=0; i< pos.size(); ++i)
     {
@@ -263,6 +263,8 @@ void TerabotArmInterface::writeHW()
 	
     }
     
+    //used to flip the movement (will be fixed later)
+     cmd[0]=-1*cmd[0];
     // moveArm function takes Degrees only as inputs
    arm.moveArm(cmd[0], cmd[1], cmd[2], cmd[3], cmd[4]);
   // arm.moveArm(0, -90, 0, 0, 0);
