@@ -220,7 +220,7 @@ izz="1.0"/>
       <geometry>
         <mesh filename="package://terabot_description/meshes/left_finger.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="red"/>
+      <material name="brown"/>
     </visual>
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -247,7 +247,7 @@ izz="1.0"/>
       <geometry>
         <mesh filename="package://terabot_description/meshes/right_finger.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="red"/>
+      <material name="brown"/>
     </visual>
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
