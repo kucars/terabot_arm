@@ -25,9 +25,9 @@ terabot_arm:
     type: position_controllers/JointPositionController
     joint: wrist_roll_joint
     pid: {p: 100.0, i: 0.01, d: 10.0}
+
     
-    
-    
+       
   # Trajectory Controllers ---------------------------------------
   terabot_arm_trajectory_controller:
     type: position_controllers/JointTrajectoryController
@@ -53,4 +53,4 @@ terabot_arm:
         trajectory: -1.0
       wrist_roll_joint:
         trajectory: -1.0
-   
+      
