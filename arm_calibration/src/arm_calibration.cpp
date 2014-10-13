@@ -109,25 +109,25 @@ int main(int argc, char *argv[])
 
     n_priv.param<int>("number_of_points",number_of_points, 6);
 
-    n_priv.param<double>("roll_angle_range",    roll_angle_range,  0.2);
-    n_priv.param<double>("roll_angle_offset",   roll_angle_offset,  0.2);
-    n_priv.param<double>("pitch_angle_range",   pitch_angle_range, 0.2);
-    n_priv.param<double>("pitch_angle_offset",  pitch_angle_offset,  0.2);
-    n_priv.param<double>("yaw_angle_range",     yaw_angle_range,   0.2);
-    n_priv.param<double>("yaw_angle_offset",    yaw_angle_offset,  0.2);
+    n_priv.param<double>("roll_angle_range",    roll_angle_range,  1.2);
+    n_priv.param<double>("roll_angle_offset",   roll_angle_offset,  1.2);
+    n_priv.param<double>("pitch_angle_range",   pitch_angle_range, 1.2);
+    n_priv.param<double>("pitch_angle_offset",  pitch_angle_offset,  1.2);
+    n_priv.param<double>("yaw_angle_range",     yaw_angle_range,   1.2);
+    n_priv.param<double>("yaw_angle_offset",    yaw_angle_offset,  1.2);
 
-    n_priv.param<double>("min_x",min_x, 0.3);
-    n_priv.param<double>("max_x",max_x, 0.8);
+    n_priv.param<double>("min_x",min_x, 0.1);
+    n_priv.param<double>("max_x",max_x, 5.0);
 
-    n_priv.param<double>("min_y",min_y, 0.3);
-    n_priv.param<double>("max_y",max_y, 0.8);
+    n_priv.param<double>("min_y",min_y, 0.1);
+    n_priv.param<double>("max_y",max_y, 5.0);
 
-    n_priv.param<double>("min_z",min_z, 0.3);
-    n_priv.param<double>("max_z",max_z, 0.8);
+    n_priv.param<double>("min_z",min_z, 0.0);
+    n_priv.param<double>("max_z",max_z, 5.0);
 
     n_priv.param<std::string>("arm_base_link",arm_base_link, "arm_base_link");
     n_priv.param<std::string>("camera_link",camera_link, "camera_link");
-    n_priv.param<std::string>("end_effector_link",end_effector_link, "eef");
+    n_priv.param<std::string>("end_effector_link",end_effector_link, "end_effector");
     n_priv.param<std::string>("marker_link",marker_link, "ar_marker_4");
 
 
@@ -161,7 +161,7 @@ int main(int argc, char *argv[])
     group.setWorkspace(min_x,min_y,min_z,max_x,max_y,max_z);
     
 
-    group.setGoalTolerance(0.03);
+    group.setGoalTolerance(0.1);
 
     moveit::planning_interface::MoveGroup::Plan my_plan;
 
@@ -190,10 +190,18 @@ int main(int argc, char *argv[])
             tf::quaternionTFToMsg(quat_tf,quat_msg);
             //random_pose=group.getRandomPose();
             random_pose.pose.orientation=quat_msg;
-            random_pose.pose.position.x=RandomFloat(min_x,max_x);
-            random_pose.pose.position.y=RandomFloat(min_y,max_y);
-            random_pose.pose.position.z=RandomFloat(min_z,max_z);
+//             random_pose.pose.position.x=RandomFloat(min_x,max_x);
+//             random_pose.pose.position.y=RandomFloat(min_y,max_y);
+//             random_pose.pose.position.z=RandomFloat(min_z,max_z);
 
+	    random_pose.pose.position.x= 1.50;
+            random_pose.pose.position.y= 1.20;
+            random_pose.pose.position.z= 1.70;
+	    
+	     std::cout << "calibration X position:"<<random_pose.pose.position.x<<std::endl;
+	     std::cout << "calibration Y position:"<<random_pose.pose.position.y<<std::endl;
+	     std::cout << "calibration Z position:"<<random_pose.pose.position.z<<std::endl;
+	    
             group.setPoseTarget(random_pose);
             success = group.plan(my_plan);
             //std::cout << random_pose.pose.position << std::endl;

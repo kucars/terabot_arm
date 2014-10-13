@@ -32,7 +32,7 @@
 class TerabotArmInterface : public hardware_interface::RobotHW
 {
 public:
-    TerabotArmInterface(int argc, char** argv);
+    TerabotArmInterface(ArRobot *_robot, ArTerabotArm *_arm);
   
     ~TerabotArmInterface();
 
@@ -45,11 +45,12 @@ public:
 
     void readHW();
     void writeHW();
-   
+ 
 
 private:
     static const unsigned int joint_number=6;
-  
+    ArRobot *robot;
+    ArTerabotArm *arm;
     hardware_interface::JointStateInterface jnt_state_interface;
     hardware_interface::PositionJointInterface jnt_pos_interface;
     std::vector<double> cmd;

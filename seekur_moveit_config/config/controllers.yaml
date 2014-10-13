@@ -8,5 +8,6 @@ controller_list:
      - forearm_joint
      - upper_arm_joint
      - wrist_pitch_joint
-     - wrist_roll_joint
+     - end_effector_joint
+#     - wrist_roll_joint
 
