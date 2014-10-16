@@ -1,62 +1,11 @@
 #include <terabot_arm_hardware_interface/TerabotArmInterface.h>
 #include <sstream>
 
-ArRobot robot;
-ArTerabotArm arm(&robot);
 
-TerabotArmInterface::TerabotArmInterface(int argc, char** argv)
+TerabotArmInterface::TerabotArmInterface(ArRobot *_robot, ArTerabotArm *_arm) : 
+	robot(_robot), 
+	arm(_arm) 
 {
-    //joint_state_pub=n_priv.advertise<sensor_msgs::JointState>( "joint_states", 1);
-
-      Aria::init();
-      static float defaultJointSpeed = 15;
-      ArLog::init(ArLog::StdErr, ArLog::Normal);
-      ArArgumentParser parser(&argc, argv);
-      parser.loadDefaultArguments();
-
-
-      ArRobotConnector robotConnector(&parser, &robot);
-
-      if(!robotConnector.connectRobot())
-      {
-        ArLog::log(ArLog::Terse, "terabotArm: Could not connect to the robot.");
-        if(parser.checkHelpAndWarnUnparsed())
-        {
-            Aria::logOptions();
-            Aria::exit(1);
-        }
-      }
-      if (!Aria::parseArgs() || !parser.checkHelpAndWarnUnparsed())
-      {
-        Aria::logOptions();
-        Aria::exit(1);
-      }
-
-      ArLog::log(ArLog::Normal, "terabotArm: Connected to mobile robot.");
-
-
-      if(!arm.open())
-      {
-          ArLog::log(ArLog::Terse, "terabotArm: Error opening serial connection to arm");
-          Aria::exit(1);
-      }
-
-
-      robot.runAsync(true);
-
-      arm.powerOn();
-      arm.reset();
-      arm.enable();
-      arm.setAllJointSpeeds(defaultJointSpeed);
-
-      ArUtil::sleep(500); // need to have read some data from the arm for key handler to work
-      robot.lock();
-      robot.enableMotors(); 
-	 
-  //ArModeUnguardedTeleop unguardedTeleopMode(&robot, "unguarded teleop", 'u', 'U');
-  //ArModeTeleop teleopMode(&robot, "teleop", 't', 'T');
-  //ArModeLaser laserMode(&robot, "laser", 'l', 'L');
-  //ArModeCommand commandMode(&robot, "direct robot commands", 'd', 'D');
 
     pos.resize(joint_number);
     vel.resize(joint_number);
@@ -64,7 +13,6 @@ TerabotArmInterface::TerabotArmInterface(int argc, char** argv)
     cmd.resize(joint_number);
     cmd_previous.resize(joint_number);
 
-    //readHW();
 
     cmd=pos;
     cmd_previous=cmd;
@@ -77,15 +25,12 @@ TerabotArmInterface::TerabotArmInterface(int argc, char** argv)
 
     std::cout << "Init done!" << '\n';
  
-// init();
     return;
 }
 
 TerabotArmInterface::~TerabotArmInterface()
 {
 
-    //robot.unlock();
-    //robot.waitForRunExit();
    Aria::exit(0);
 }
 
@@ -185,15 +130,19 @@ bool TerabotArmInterface::init(hardware_interface::JointStateInterface & jnt_sta
 }
 
 
-
-
 void TerabotArmInterface::readHW()
 {
-
-    // READ JOINTS STATe
-    float* positions;
-    positions = arm.getArmPos();
-
+    
+    float positions[5];
+    //positions = arm.getArmPos();
+    
+    positions[0]=arm->getJointPos(0);
+    positions[1]=arm->getJointPos(1);
+    positions[2]=arm->getJointPos(2);
+    positions[3]=arm->getJointPos(3);
+    positions[4]=arm->getJointPos(4);
+   // arm.getArmPos(positions);
+    ROS_INFO("Reading current postion POSITION");
     std::cout << "CURRENT POSITION DEGREES: ";
     for(int i=0; i< pos.size(); ++i)
     {
@@ -201,22 +150,23 @@ void TerabotArmInterface::readHW()
 	std::cout <<pos[i]<<" , ";
     }
      std::cout << "\n";std::cout << "\n";
-      std::cout << "COMMAND POSITION: ";
-   for(int i=0; i< pos.size(); ++i)
-    {
-        std::cout <<cmd[i]<<" , ";
-    }
-     std::cout << "\n";std::cout << "\n";
     // convert to radians and add to state be sure
-     std::cout << "CURRENT POSITION: ";
+    
+    std::cout << "CURRENT POSITION RADIANS: ";
     for(int i=0; i< pos.size(); ++i)
     {
         pos[i]=pos[i]*(DEG_TO_RAD);
 	std::cout <<pos[i]<<" , ";
     }
-
     std::cout << "\n";std::cout << "\n";
-
+    
+    std::cout << "COMMANDED POSITION IN RADIANS: ";
+    for(int i=0; i< pos.size(); ++i)
+    {
+        std::cout <<cmd[i]<<" , ";
+    }
+    std::cout << "\n";std::cout << "\n";
+    
     eff[0]=0.0;
     eff[1]=0.0;
     eff[2]=0.0;
@@ -251,10 +201,6 @@ void TerabotArmInterface::writeHW()
     }*/
     static int new_command_count=0;
     new_command_count++;
-    //readHW();
-   // std::cout << "new command:"<< new_command_count << std::endl;
-    //boost::mutex::scoped_lock lock(io_mutex);
-    // WRITE MOVE to robot
     
     //convert command cmd from Radians to Degrees
       for(int i=0; i< cmd.size(); ++i)
@@ -263,10 +209,11 @@ void TerabotArmInterface::writeHW()
 	
     }
     
+    //used to flip the movement (will be fixed later)
+     cmd[0]=-1*cmd[0];
     // moveArm function takes Degrees only as inputs
-   arm.moveArm(cmd[0], cmd[1], cmd[2], cmd[3], cmd[4]);
+   arm->moveArm(cmd[0], cmd[1], cmd[2], cmd[3], cmd[4]);
   // arm.moveArm(0, -90, 0, 0, 0);
 
-  
   
 }

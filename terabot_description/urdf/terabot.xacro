@@ -177,12 +177,36 @@
     </inertial>
   </link>
 
+ <!-- added end effector for calibration -->
+  
+ <joint name="end_effector_joint" type="fixed">
+   <origin xyz="0.09 ${wrist_roll_joint_z_offset} 0" rpy="0 0 0"/> <!-- original is 0.085 but we have the torque sensor...-->
+      <axis xyz="0 0 1"/>
+      <parent link="wrist_pitch_link"/>
+      <child link="end_effector"/>
+      <dynamics damping="100.0" friction="100.0" />
+      </joint>
+      <!-- end_effector -->
+      <link name="end_effector">
+	<origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertial>
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+      <mass value="0.01"/>
+      <inertia
+      ixx="1.0" ixy="0.0" ixz="0.0"
+      iyy="1.0" iyz="0.0"
+      izz="1.0"/>
+      </inertial>
+      </link>
+  
+ <!-- modified the following part to add end_effector link (marker) for calibration -->
 
  <joint name="wrist_roll_joint" type="revolute">
-    <origin xyz="${50*BASE+0.013+wrist_roll_joint_x_offset} ${wrist_roll_joint_z_offset} 0" rpy="0 ${PI/2} 0"/>
+    <!-- origin xyz="${50*BASE+0.013+wrist_roll_joint_x_offset} ${wrist_roll_joint_z_offset} 0" rpy="0 ${PI/2} 0"/ -->
+     <origin xyz="0.07 0 0" rpy="0 ${PI/2} 0"/>
     <axis xyz="0 0 1"/>
     <limit effort="1000.0" lower="${-170*(PI/180)}" upper="${170*(PI/180)}" velocity="0.5"/>
-    <parent link="wrist_pitch_link"/>
+    <parent link="end_effector"/>
     <child link="wrist_roll_link"/>
     <dynamics damping="0.7"/>
   </joint>
@@ -220,7 +244,7 @@ izz="1.0"/>
       <geometry>
         <mesh filename="package://terabot_description/meshes/left_finger.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="red"/>
+      <material name="brown"/>
     </visual>
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -247,7 +271,7 @@ izz="1.0"/>
       <geometry>
         <mesh filename="package://terabot_description/meshes/right_finger.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="red"/>
+      <material name="brown"/>
     </visual>
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>

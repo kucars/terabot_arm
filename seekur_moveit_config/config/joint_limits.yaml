@@ -4,17 +4,7 @@ joint_limits:
     max_velocity: 0.5
     has_acceleration_limits: false
     max_acceleration: 0
-  gripper_l_finger_joint:
-    has_velocity_limits: true
-    max_velocity: 0.5
-    has_acceleration_limits: false
-    max_acceleration: 0
-  gripper_r_finger_joint:
-    has_velocity_limits: true
-    max_velocity: 0.5
-    has_acceleration_limits: false
-    max_acceleration: 0
-  shoulder_joint:
+  wrist_pitch_joint:
     has_velocity_limits: true
     max_velocity: 0.5
     has_acceleration_limits: false
@@ -24,12 +14,7 @@ joint_limits:
     max_velocity: 0.5
     has_acceleration_limits: false
     max_acceleration: 0
-  wrist_pitch_joint:
-    has_velocity_limits: true
-    max_velocity: 0.5
-    has_acceleration_limits: false
-    max_acceleration: 0
-  wrist_roll_joint:
+  shoulder_joint:
     has_velocity_limits: true
     max_velocity: 0.5
     has_acceleration_limits: false
