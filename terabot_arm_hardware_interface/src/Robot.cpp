@@ -77,10 +77,6 @@ int main(int argc, char** argv)
 
     ros::Time previous=ros::Time::now();
 
-    
-    
-    
-    
     ros::Rate rate(10.0);
     while (ros::ok())
     {
@@ -88,7 +84,7 @@ int main(int argc, char** argv)
         robot1.readHW();
         ros::Time now=ros::Time::now();
         period=now-previous;
-        std::cout << "period:"<<period<<std::endl;
+        //std::cout << "period:"<<period<<std::endl;
         cm.update(now, period);
         robot1.writeHW();
         rate.sleep();

@@ -5,4 +5,4 @@ moveit_setup_assistant_config:
   SRDF:
     relative_path: config/seekur_jr.srdf
   CONFIG:
-    generated_timestamp: 1412858240
+    generated_timestamp: 1414408499

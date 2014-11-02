@@ -5,3 +5,6 @@ controller_list:
       - forearm_joint
       - upper_arm_joint
       - wrist_pitch_joint
+  - name: fake_marker_controller
+    joints:
+      []

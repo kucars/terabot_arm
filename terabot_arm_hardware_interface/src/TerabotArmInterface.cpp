@@ -13,7 +13,7 @@ TerabotArmInterface::TerabotArmInterface(ArRobot *_robot, ArTerabotArm *_arm) :
     cmd.resize(joint_number);
     cmd_previous.resize(joint_number);
 
-
+    firstRead = true;readCounter = 0;
     cmd=pos;
     cmd_previous=cmd;
     // convert to radians and add to state
@@ -118,7 +118,7 @@ bool TerabotArmInterface::init(hardware_interface::JointStateInterface & jnt_sta
 
     hardware_interface::JointHandle pos_handle_j4(jnt_state_interface_.getHandle("wrist_pitch_joint"), &cmd[3]);
     jnt_pos_interface_.registerHandle(pos_handle_j4);
-
+    
     hardware_interface::JointHandle pos_handle_j5(jnt_state_interface_.getHandle("wrist_roll_joint"), &cmd[4]);
     jnt_pos_interface_.registerHandle(pos_handle_j5);
 
@@ -136,37 +136,49 @@ void TerabotArmInterface::readHW()
     float positions[5];
     //positions = arm.getArmPos();
     
-    positions[0]=arm->getJointPos(0);
+    positions[0]=-arm->getJointPos(0);
     positions[1]=arm->getJointPos(1);
     positions[2]=arm->getJointPos(2);
     positions[3]=arm->getJointPos(3);
     positions[4]=arm->getJointPos(4);
-   // arm.getArmPos(positions);
-    ROS_INFO("Reading current postion POSITION");
-    std::cout << "CURRENT POSITION DEGREES: ";
+    if(firstRead)
+    {
+      if(++readCounter>10)
+	firstRead = false;
+      std::cout <<"\nCURRENT POSITION DEGREES: ";
+      for(int i=0; i< pos.size(); ++i)
+      {
+	  cmd[i] = positions[i]*(DEG_TO_RAD);
+	  std::cout <<positions[i]<<" , ";
+      }
+      std::cout << "\n";
+    }
+    //arm.getArmPos(positions);
+    //ROS_INFO("Reading current postion POSITION");
+    //std::cout << "CURRENT POSITION DEGREES: ";
     for(int i=0; i< pos.size(); ++i)
     {
         pos[i]=positions[i];
-	std::cout <<pos[i]<<" , ";
+	//std::cout <<pos[i]<<" , ";
     }
-     std::cout << "\n";std::cout << "\n";
+    //std::cout << "\n";std::cout << "\n";
     // convert to radians and add to state be sure
     
-    std::cout << "CURRENT POSITION RADIANS: ";
+    //std::cout << "CURRENT POSITION RADIANS: ";
     for(int i=0; i< pos.size(); ++i)
     {
         pos[i]=pos[i]*(DEG_TO_RAD);
-	std::cout <<pos[i]<<" , ";
+	//std::cout <<pos[i]<<" , ";
     }
-    std::cout << "\n";std::cout << "\n";
-    
+    //std::cout << "\n";std::cout << "\n";
+    /*
     std::cout << "COMMANDED POSITION IN RADIANS: ";
     for(int i=0; i< pos.size(); ++i)
     {
         std::cout <<cmd[i]<<" , ";
     }
     std::cout << "\n";std::cout << "\n";
-    
+    */
     eff[0]=0.0;
     eff[1]=0.0;
     eff[2]=0.0;
@@ -201,19 +213,25 @@ void TerabotArmInterface::writeHW()
     }*/
     static int new_command_count=0;
     new_command_count++;
-    
+
     //convert command cmd from Radians to Degrees
-      for(int i=0; i< cmd.size(); ++i)
+    for(int i=0; i< cmd.size(); ++i)
     {
         cmd[i]=cmd[i]*(RAD_TO_DEG);
-	
     }
-    
+    cmd[4] = 0;
+    if(readCounter<10)
+    {
+      std::cout <<"\nCURRENT Command DEGREES: ";
+      for(int i=0; i< cmd.size(); ++i)
+      {
+	  std::cout <<cmd[i]<<" , ";
+      }
+      std::cout << "\n";
+    }    
     //used to flip the movement (will be fixed later)
      cmd[0]=-1*cmd[0];
     // moveArm function takes Degrees only as inputs
    arm->moveArm(cmd[0], cmd[1], cmd[2], cmd[3], cmd[4]);
-  // arm.moveArm(0, -90, 0, 0, 0);
-
-  
+   // arm.moveArm(0, -90, 0, 0, 0);
 }

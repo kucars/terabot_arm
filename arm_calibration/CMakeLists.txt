@@ -122,7 +122,13 @@ add_executable(arm_calibration src/arm_calibration.cpp)
 # )
 
  target_link_libraries(arm_calibration
-${catkin_LIBRARIES} ${PCL_LIBRARIES}
+${catkin_LIBRARIES} ${PCL_LIBRARIES} 
+)
+
+add_executable(arm_camera_calibration src/arm_camera_calibration.cpp)
+
+ target_link_libraries(arm_camera_calibration
+${catkin_LIBRARIES} ${PCL_LIBRARIES} 
 )
 #############
 ## Install ##

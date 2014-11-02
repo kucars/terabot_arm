@@ -45,8 +45,8 @@ public:
 
     void readHW();
     void writeHW();
- 
-
+    bool firstRead; 
+    int readCounter;
 private:
     static const unsigned int joint_number=6;
     ArRobot *robot;
