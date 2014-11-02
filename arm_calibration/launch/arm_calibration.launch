@@ -9,7 +9,7 @@
 <param name="arm_base_link" value="arm_base_link" /> <!-- arm base frame -->
 <param name="camera_link" value="camera_link" /> <!-- camera frame -->
 <param name="end_effector" value="end_effector" /> <!-- end effector frame, where the AR marker should be placed -->
-<param name="marker_link" value="ar_marker_4" /> <!-- marker id -->
+<param name="marker_link" value="ar_marker_0" /> <!-- marker id -->
 <!-- workspace (arm base_link frame) from which the samples are taken (in meters) -->
 <param name="min_x" value="0.4" />
 <param name="max_x" value="1.0" />

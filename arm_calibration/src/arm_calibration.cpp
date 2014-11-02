@@ -130,7 +130,7 @@ int main(int argc, char *argv[])
     n_priv.param<std::string>("arm_base_link",arm_base_link, "arm_base_link");
     n_priv.param<std::string>("camera_link",camera_link, "camera_link");
     n_priv.param<std::string>("end_effector",end_effector_link, "end_effector");
-    n_priv.param<std::string>("marker_link",marker_link, "ar_marker_4");
+    n_priv.param<std::string>("marker_link",marker_link, "ar_marker_0");
 
 
     ros::NodeHandle node_handle;
@@ -177,17 +177,28 @@ int main(int argc, char *argv[])
     std::cout << "get end effector link:"<< group.getEndEffectorLink()<<std::endl;
     PointCloud::Ptr arm_cloud(new PointCloud);
     PointCloud::Ptr camera_cloud(new PointCloud);
+    
+    float positionx[13]={0.82633,0.81688,0.79482,0.82561,0.85233,0.85823, 0.84924,0.84145,0.80744, 0.83643,0.91167,0.76203,0.92631};
+    float positiony[13]={-5.4058e-06,-0.09412, -0.16984,-0.18168,-0.084054,0.033804,0.10065,0.1336,0.12433,0.16757,-0.0374,-0.12664,0.1364};
+    float positionz[13]={0.24769,0.24767,0.24769,0.29213,0.29221,0.2922,0.29219, 0.29219,0.26394,0.28019,0.33795,0.29291, 0.35577};
+    
+    float quatx[13]={-0.071466, -0.00091693, 0.057936,0.10371,0.03338, 0.049068,0.095922,0.1192,0.22109,-0.095911, -0.14986,0.02758,-0.047177};  
+    float quaty[13]={0.70349,0.70711, 0.70473,0.69946,0.70632,-0.7054,-0.70057,-0.69699,-0.67165,0.70057,-0.69104,0.70657,0.70553};
+    float quatz[13]={-0.70349,-0.69283,-0.67866,-0.69015,-0.70207,0.7071,0.70567, 0.70376,0.70618,-0.69339,0.6995,-0.68318,-0.69732};
+    float quatw[13]={-0.071474,-0.14136,-0.19853,-0.15393,-0.084216,0.001914,-0.045118,-0.068728,0.036208,0.13859,-0.10341,-0.1824,0.11726};
+    
+  /*  
     float positionx[8]={0.84207,0.82051,0.77428,0.82044,0.78233,0.80127,0.84587,0.90135};
     float positiony[8]={0.016322,0.14474, 0.24908,-0.14473,-0.23492,-0.2452,0.1348,-0.14999};
     float positionz[8]={0.2885,0.28846,0.28843,0.28843,0.28845,0.24544,0.2455,0.28731};
     float quatx[8]={0.032703, -0.061438, -0.14309,-0.14939,-0.21778,0.17326,0.095717,0.090634};
     float quaty[8]={0.70635,0.70443,0.69248,-0.69115,-0.67273, 0.68555,-0.7006,0.70127};
     float quatz[8]={-0.70487,-0.69114,-0.66903,0.70443,0.69476, -0.68468,0.70106,-0.70036};
-    float quatw[8]={0.056222,0.14944,0.22892,0.061501,0.13154, -0.17666,-0.092313,-0.097434};
+    float quatw[8]={0.056222,0.14944,0.22892,0.061501,0.13154, -0.17666,-0.092313,-0.097434};*/
     int j=0;
     while(ros::ok() &&
           camera_cloud->points.size()!=number_of_points &&
-          arm_cloud->points.size()!=number_of_points && j<8)
+          arm_cloud->points.size()!=number_of_points && j<13)
     {
         ROS_INFO_STREAM("Samples acquired so far: "<<camera_cloud->points.size()<< " out of "<<number_of_points);
 
@@ -206,10 +217,11 @@ int main(int argc, char *argv[])
 	     fixed_pose.orientation = quat_msg;
 	     group.setJointValueTarget(fixed_pose);
              std::cout << fixed_pose.position << std::endl;
-	     sleep(5.0);
+	     sleep(1);
 	     group.move();
-	      
-        tf::TransformListener listener;
+	     sleep(5);
+	     //ros::Duration(5).sleep();	     	      
+             tf::TransformListener listener;
         // Get some point correspondences
         try
         {
@@ -282,7 +294,7 @@ int main(int argc, char *argv[])
 	r.sleep();
     }
 
-    return 1;
+    return 0;
 }
 
 
