@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <robot>
   <property name="PI" value="3.1415926535897931" />
+  <property name="pi" value="3.1415926535897931" />
   <property name="BASE" value="0.001" />
   <property name="link_radius" value="0.02" />
   <property name="VELOCITY_LIMIT_SCALE" value="0.6" />
