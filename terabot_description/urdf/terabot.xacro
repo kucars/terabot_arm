@@ -287,47 +287,80 @@ izz="1.0"/>
 
   <transmission name="tran1">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="shoulder_joint"/>
+    <joint name="shoulder_joint">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
     <actuator name="motor1">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
 
   <transmission name="tran2">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="forearm_joint"/>
+    <joint name="forearm_joint">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>
     <actuator name="motor2">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
 
   <transmission name="tran3">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="upper_arm_joint"/>
+    <joint name="upper_arm_joint">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>    
     <actuator name="motor3">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
 
   <transmission name="tran4">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="wrist_pitch_joint"/>
+    <joint name="wrist_pitch_joint">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>        
     <actuator name="motor4">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
 
   <transmission name="tran5">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="wrist_roll_joint"/>
+    <joint name="wrist_roll_joint">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+    </joint>        
     <actuator name="motor5">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+
+  <transmission name="tran6">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="gripper_r_finger_joint">
+          <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>        
+      <actuator name="motor6">
+          <hardwareInterface>PositionJointInterface</hardwareInterface>
+          <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>
+
+  <transmission name="tran7">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="gripper_l_finger_joint">
+          <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>        
+      <actuator name="motor7">
+          <hardwareInterface>PositionJointInterface</hardwareInterface>
+          <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+  </transmission>  
+  
 
 </robot>
