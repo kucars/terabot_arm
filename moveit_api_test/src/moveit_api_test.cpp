@@ -7,28 +7,57 @@ int main(int argc, char **argv)
     spinner.start();
     // this connecs to a running instance of the move_group node
     move_group_interface::MoveGroup group("arm");
+    group.setPlanningTime(30.0);
+    group.setWorkspace(-3.0,-3.0,-3.0,3.0,3.0,3.0);
     // specify that our target will be a random one
      //0.37042; 0.10712; 1.177
      //0.6863; -0.17026; 0.70499; -0.054705
      geometry_msgs::Pose fixed_pose;
-     fixed_pose.position.x =  0.84207;
-     fixed_pose.position.y =  0.016322;
-     fixed_pose.position.z =  0.2885;
-
      geometry_msgs::Quaternion quat_msg;
-     quat_msg.x = 0.032703;
-     quat_msg.y = 0.70635;
-     quat_msg.z = -0.70487;
-     quat_msg.w = 0.056222;
+     fixed_pose.position.x =   1.0007;
+     fixed_pose.position.y =  -0.0051214;
+     fixed_pose.position.z =  0.24196;
+     quat_msg.x = 0.66566;
+     quat_msg.y = 0.23854;
+     quat_msg.z = -0.23856;
+     quat_msg.w = 0.66565;
+     ROS_INFO("First Planning step");
+   
+     /*
+     fixed_pose.position.x =  1.148;
+     fixed_pose.position.y =  0;
+     fixed_pose.position.z =  0.34273;
+     quat_msg.x = 0.66566;
+     quat_msg.y = 0.23854;
+     quat_msg.z = -0.23856;
+     quat_msg.w = 0.66565;
+     ROS_INFO("First Planning step");
+     group.setApproximateJointValueTarget(fixed_pose);
+     group.move();
+     
+     ros::Duration(3).sleep();
+     
+     ROS_INFO("Second Planning step");
+     fixed_pose.position.x =  0.95;
+     fixed_pose.position.y =  0;//00028645
+     fixed_pose.position.z =  0.2;//0.168;
+     quat_msg.x = 0.64984;
+     quat_msg.y = 0.27877;
+     quat_msg.z = -0.27843;
+     quat_msg.w = 0.64998;
+    
      fixed_pose.orientation = quat_msg;
      std::cout << "get end effector link:"<< group.getEndEffectorLink()<<std::endl;
-    //group.setPoseTarget(fixed_pose);
-    group.setJointValueTarget(fixed_pose);
-   //group.setApproximateJointValueTarget(fixed_pose);
-   // group.setRandomTarget();
-    // plan the motion and then move the group to the sampled target 
-    group.move();
-    ros::waitForShutdown();
+     //group.setPoseTarget(fixed_pose);
+     //group.setJointValueTarget(fixed_pose);
+     */
+     //group.setGoalPositionTolerance(0.5);
+     //group.setGoalOrientationTolerance(0.5);
+     group.setApproximateJointValueTarget(fixed_pose);
+     // group.setRandomTarget();
+     // plan the motion and then move the group to the sampled target 
+     group.move();
+     ros::waitForShutdown();
 }
 
 //home position

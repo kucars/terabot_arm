@@ -1,4 +1,9 @@
 joint_limits:
+  forearm_joint:
+    has_velocity_limits: true
+    max_velocity: 0.5
+    has_acceleration_limits: false
+    max_acceleration: 0
   wrist_pitch_joint:
     has_velocity_limits: true
     max_velocity: 0.5
@@ -10,11 +15,6 @@ joint_limits:
     has_acceleration_limits: false
     max_acceleration: 0
   shoulder_joint:
-    has_velocity_limits: true
-    max_velocity: 0.5
-    has_acceleration_limits: false
-    max_acceleration: 0
-  forearm_joint:
     has_velocity_limits: true
     max_velocity: 0.5
     has_acceleration_limits: false
