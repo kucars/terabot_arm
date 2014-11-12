@@ -8,6 +8,7 @@ controller_list:
      - forearm_joint
      - upper_arm_joint
      - wrist_pitch_joint
-     - end_effector_joint
-#     - wrist_roll_joint
+     - wrist_roll_joint
+     - gripper_l_finger_joint
+#      - gripper_r_finger_joint
 

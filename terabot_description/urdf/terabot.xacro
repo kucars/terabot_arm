@@ -231,7 +231,7 @@ izz="1.0"/>
 
   <joint name="gripper_l_finger_joint" type="revolute">
     <origin xyz="${gripper_l_finger_joint_x_offset} 0 -0.0145" rpy="0 ${3*PI/2} ${3*PI/2}"/>
-    <limit effort="1000.0" lower="0.0" upper="${115*(PI/180)}" velocity="0.5"/>
+    <limit effort="1000.0" lower="0.0" upper="${40*(PI/180)}" velocity="0.5"/>
     <axis xyz="0 0 -1"/>
 
     <parent link="wrist_roll_link"/>
@@ -258,7 +258,7 @@ izz="1.0"/>
 
    <joint name="gripper_r_finger_joint" type="revolute">
     <origin xyz="${gripper_r_finger_joint_x_offset} 0 -0.0145" rpy="0 ${3*PI/2} ${3*PI/2}"/>
-    <limit effort="1000.0" lower="0.0" upper="${115*(PI/180)}" velocity="0.5"/>
+    <limit effort="1000.0" lower="0.0" upper="${40*(PI/180)}" velocity="0.5"/>
     <axis xyz="0 0 1"/>
     <mimic joint="gripper_l_finger_joint"/>
     <parent link="wrist_roll_link"/>
