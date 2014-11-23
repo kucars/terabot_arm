@@ -7,6 +7,7 @@ int main(int argc, char **argv)
     spinner.start();
     // this connecs to a running instance of the move_group node
     move_group_interface::MoveGroup group("arm");
+   // group.setEndEffectorLink("wrist_roll_link");// added newly (was not included)
     group.setPlanningTime(30.0);
     group.setWorkspace(-3.0,-3.0,-3.0,3.0,3.0,3.0);
     // specify that our target will be a random one
@@ -25,52 +26,67 @@ int main(int argc, char **argv)
      ROS_INFO("First Planning step");
      */
      //---------------------------------
-     fixed_pose.position.x =  1.148;
-     fixed_pose.position.y =  0;
-     fixed_pose.position.z =  0.34273;
-     quat_msg.x = 0.66566;
-     quat_msg.y = 0.23854;
-     quat_msg.z = -0.23856;
-     quat_msg.w = 0.66565;
-     ROS_INFO("First Planning step");
-     group.setApproximateJointValueTarget(fixed_pose);
-     group.move();
-     
-     ros::Duration(3).sleep();
-     
-     ROS_INFO("Second Planning step");
-     fixed_pose.position.x =  0.95;
-     fixed_pose.position.y =  0;//00028645
-     fixed_pose.position.z =  0.2;//0.168;
-     quat_msg.x = 0.64984;
-     quat_msg.y = 0.27877;
-     quat_msg.z = -0.27843;
-     quat_msg.w = 0.64998;
-      group.setApproximateJointValueTarget(fixed_pose);
-     group.move();
-     
-     ros::Duration(3).sleep();
-     
-     ROS_INFO("Third Planning step");
-     fixed_pose.position.x =  0.84207;
-     fixed_pose.position.y =  0.016322;//00028645
-     fixed_pose.position.z =  0.2885;//0.168;
+     /*
+     TRANSFORM X: 1.2151
+     TRANSFORM Y: -0.00280483
+     TRANSFORM Z: -0.0158832
+     */
+     /*
+     fixed_pose.position.x =  0.92427;
+     fixed_pose.position.y =  -0.0029563;
+     fixed_pose.position.z =  1.079;
+     */
+     fixed_pose.position.x =  1.2151;
+     fixed_pose.position.y =  0.5028;
+     fixed_pose.position.z =  -0.015;     
      quat_msg.x = 0;
      quat_msg.y = 0;
      quat_msg.z = 0;
      quat_msg.w = 1;
-    
+     ROS_INFO("First Planning step");
      fixed_pose.orientation = quat_msg;
+     group.setApproximateJointValueTarget(fixed_pose);
+     //group.setJointValueTarget(fixed_pose);
+     group.move();
+     
+     ros::Duration(3).sleep();
+     
+//      ROS_INFO("Second Planning step");
+//      fixed_pose.position.x =  0.95;
+//      fixed_pose.position.y =  0;//00028645
+//      fixed_pose.position.z =  0.2;//0.168;
+//      quat_msg.x = 0.64984;
+//      quat_msg.y = 0.27877;
+//      quat_msg.z = -0.27843;
+//      quat_msg.w = 0.64998;
+//      group.setApproximateJointValueTarget(fixed_pose);
+//      group.move();
+//      
+//      ros::Duration(3).sleep();
+//      
+//      ROS_INFO("Third Planning step");
+//      fixed_pose.position.x =  1.148;
+//      fixed_pose.position.y =  -2.216e-05;//00028645
+//      fixed_pose.position.z =  0.34273;//0.168;
+//      quat_msg.x = 0;
+//      quat_msg.y = 0;
+//      quat_msg.z = 0;
+//      quat_msg.w = 1;
+//     
+     fixed_pose.orientation = quat_msg;
+
      std::cout << "get end effector link:"<< group.getEndEffectorLink()<<std::endl;
      //group.setPoseTarget(fixed_pose);
      //group.setJointValueTarget(fixed_pose);
      //-------------------------
      //group.setGoalPositionTolerance(0.5);
      //group.setGoalOrientationTolerance(0.5);
-     group.setApproximateJointValueTarget(fixed_pose);
+     //group.setApproximateJointValueTarget(fixed_pose);
      // group.setRandomTarget();
      // plan the motion and then move the group to the sampled target 
-     group.move();
+     //sleep(1);
+     //group.move();
+     //sleep(5);
      ros::waitForShutdown();
 }
 
@@ -78,6 +94,10 @@ int main(int argc, char **argv)
 // 1.148; -2.216e-05; 0.34273
 //0.66566; 0.23854; -0.23856; 0.66565
 
+//0.92427; -0.0029563; 1.079
+
+//1.059; 0.036072; 0.73613
+//-3.5313e-05; 0.48751; -2.6597e-06; 0.87312
 
 //***camera_pose 1
 //0.84207; 0.016322; 0.2885

@@ -1,4 +1,6 @@
 #ifndef TERABOTARMINTERFACE_H
+#include "ros/ros.h" //for the gripper service 
+#include <std_srvs/Empty.h> // for the gripper service 
 
 #include <stdio.h> // standard input / output functions
 #include <stdlib.h>
@@ -32,7 +34,7 @@
 class TerabotArmInterface : public hardware_interface::RobotHW
 {
 public:
-    TerabotArmInterface(ArRobot *_robot, ArTerabotArm *_arm);
+    TerabotArmInterface(ArRobot *_robot, ArTerabotArm *_arm, ros::NodeHandle & n);
   
     ~TerabotArmInterface();
 
@@ -40,8 +42,9 @@ public:
 
     bool init(hardware_interface::JointStateInterface &jnt_state_interface_,
               hardware_interface::PositionJointInterface &jnt_pos_interface_);
-
-
+    
+    bool close(std_srvs::Empty::Request&, std_srvs::Empty::Response&);//added for the gripper
+    bool open(std_srvs::Empty::Request&, std_srvs::Empty::Response&);//added for the gripper
 
     void readHW();
     void writeHW();
@@ -51,6 +54,10 @@ private:
     static const unsigned int joint_number=6;
     ArRobot *robot;
     ArTerabotArm *arm;
+    ros::NodeHandle n_;
+    ros::ServiceServer close_srv;//added for the gripper
+    ros::ServiceServer open_srv;//added for the gripper
+    
     hardware_interface::JointStateInterface jnt_state_interface;
     hardware_interface::PositionJointInterface jnt_pos_interface;
     std::vector<double> cmd;

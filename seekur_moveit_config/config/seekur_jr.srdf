@@ -17,13 +17,13 @@
         <joint name="wrist_pitch_joint" />
         <joint name="end_effector_joint" />
         <joint name="wrist_roll_joint" />
-        <joint name="gripper_l_finger_joint" />
-        <joint name="gripper_r_finger_joint" />
+	<!--<joint name="gripper_l_finger_joint" />--> <!-- commented new -->
+        <!-- joint name="gripper_r_finger_joint" / --><!-- commented new -->
     </group>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-    <end_effector name="eff" parent_link="wrist_roll_link" group="arm" />
+   <!-- <end_effector name="eff" parent_link="wrist_roll_link" group="arm" />-->
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
-    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="base_link" />
+  <!--  <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="base_link" />-->
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="arm_base_link" link2="base_link" reason="Adjacent" />
     <disable_collisions link1="arm_base_link" link2="camera_link" reason="Never" />

@@ -73,12 +73,12 @@ Adept MobileRobots, 10 Columbia Drive, Amherst, NH 03031; 800-639-9481
 
 static float park [5]= {149, -94, 155, -149, 0}; // collapsed on back of robot
 static float forwardReady [5]= {0, -40, -90, -40, 0};
-static float straightForward [5]= {89.831, -79.871, -36.404, -27.131, -0.055};
-//static float straightForward [5]= {0, -90, 0, 0, 0};
+//static float straightForward [5]= {89.831, -79.871, -36.404, -27.131, -0.055};
+static float straightForward [5]= {0, -90, 0, 0, 0};
 //static float straightForward [5]= {0.045, -0.570, -90.004, -40.048, 90.117};
-//static float pickUpFloor [5]= {0, -95, -76.5, -3.5, -0};
+static float pickUpFloor [5]= {0, -95, -76.5, -3.5, -0};
 //static float pickUpFloor [5]= {0.045, -94.960, -41.063, -40.044, 12.960};
-static float pickUpFloor [5]= {19.304, -79.811, -31.639, -27.312, -0.047};
+//static float pickUpFloor [5]= {19.304, -79.811, -31.639, -27.312, -0.047};
 static float right [5]= {45, -54.52, -69.04, -6.93, 0};
 static float left[5] = {-45, -54.52, -69.04, -6.93, 0};
 

@@ -18,7 +18,10 @@ int main(int argc, char** argv)
       parser.loadDefaultArguments();
       ArRobot robot;
       ArTerabotArm arm(&robot);
+      
 
+      
+      
       ArRobotConnector robotConnector(&parser, &robot);
 
       if(!robotConnector.connectRobot())
@@ -62,7 +65,7 @@ int main(int argc, char** argv)
     
     
     
-      TerabotArmInterface robot1(&robot, &arm);   
+      TerabotArmInterface robot1(&robot, &arm, node);   
     
     //**********************************************************
     //**********************************************************
@@ -71,6 +74,8 @@ int main(int argc, char** argv)
     std::cout << "after creating the object"<<std::endl;
     robot1.init(jnt_state_interface_, jnt_pos_interface_);
     controller_manager::ControllerManager cm(&robot1, node);
+    
+
 
     ros::AsyncSpinner spinner(4);
     spinner.start();

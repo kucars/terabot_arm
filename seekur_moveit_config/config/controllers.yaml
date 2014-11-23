@@ -9,6 +9,6 @@ controller_list:
      - upper_arm_joint
      - wrist_pitch_joint
      - wrist_roll_joint
-     - gripper_l_finger_joint
-#      - gripper_r_finger_joint
+#      - gripper_l_finger_joint #newly commented 
+#      - gripper_r_finger_joint# was previously commented
 
