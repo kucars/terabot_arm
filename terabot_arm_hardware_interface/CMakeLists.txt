@@ -5,6 +5,11 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   sensor_msgs
+  moveit_msgs
+  moveit_ros_planning
+  moveit_ros_planning_interface
+  moveit_ros_move_group
+  moveit_core
   std_srvs
   hardware_interface
   controller_manager
@@ -12,7 +17,7 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 find_package(Boost REQUIRED COMPONENTS system)
-
+find_package(Eigen REQUIRED)
 catkin_package(
 #  INCLUDE_DIRS include
 # LIBRARIES terabot_arm_hardware_interface
@@ -22,7 +27,8 @@ catkin_package(
 
 include_directories(
   ${catkin_INCLUDE_DIRS} 
-  ${catkin_SRC_DIRS} 
+  ${catkin_SRC_DIRS}
+  ${Eigen_INCLUDE_DIRS}
   /usr/local/Aria/include/
   ${CMAKE_CURRENT_LIST_DIR}/../terabot_arm_driver/include
   ${CMAKE_CURRENT_LIST_DIR}/include/

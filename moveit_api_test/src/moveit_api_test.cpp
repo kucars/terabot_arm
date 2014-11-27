@@ -15,16 +15,17 @@ int main(int argc, char **argv)
      //0.6863; -0.17026; 0.70499; -0.054705
      geometry_msgs::Pose fixed_pose;
      geometry_msgs::Quaternion quat_msg;
-     /*
-     fixed_pose.position.x =   1.0007;
-     fixed_pose.position.y =  -0.0051214;
-     fixed_pose.position.z =  0.24196;
-     quat_msg.x = 0;
-     quat_msg.y = 0;
-     quat_msg.z = 0;
-     quat_msg.w = 1;
+    
+     fixed_pose.position.x =   1.1336;
+     fixed_pose.position.y =  0.011657;
+     fixed_pose.position.z =  0.96661;
+     quat_msg.x = 0.028159;
+     quat_msg.y = 0.7087;
+     quat_msg.z = 0.038496;
+     quat_msg.w = 0.7039;
      ROS_INFO("First Planning step");
-     */
+   //  1.1336; 0.011657; 0.96661
+  //   0.028159; 0.7087; 0.038496; 0.7039
      //---------------------------------
      /*
      TRANSFORM X: 1.2151
@@ -36,20 +37,20 @@ int main(int argc, char **argv)
      fixed_pose.position.y =  -0.0029563;
      fixed_pose.position.z =  1.079;
      */
-     fixed_pose.position.x =  1.2151;
-     fixed_pose.position.y =  0.5028;
-     fixed_pose.position.z =  -0.015;     
-     quat_msg.x = 0;
-     quat_msg.y = 0;
-     quat_msg.z = 0;
-     quat_msg.w = 1;
-     ROS_INFO("First Planning step");
-     fixed_pose.orientation = quat_msg;
-     group.setApproximateJointValueTarget(fixed_pose);
-     //group.setJointValueTarget(fixed_pose);
-     group.move();
-     
-     ros::Duration(3).sleep();
+//      fixed_pose.position.x =  1.2151;
+//      fixed_pose.position.y =  0.5028;
+//      fixed_pose.position.z =  -0.015;     
+//      quat_msg.x = 0;
+//      quat_msg.y = 0;
+//      quat_msg.z = 0;
+//      quat_msg.w = 1;
+//      ROS_INFO("First Planning step");
+//      fixed_pose.orientation = quat_msg;
+//      group.setApproximateJointValueTarget(fixed_pose);
+//      //group.setJointValueTarget(fixed_pose);
+//      group.move();
+//      
+//      ros::Duration(3).sleep();
      
 //      ROS_INFO("Second Planning step");
 //      fixed_pose.position.x =  0.95;
@@ -63,32 +64,35 @@ int main(int argc, char **argv)
 //      group.move();
 //      
 //      ros::Duration(3).sleep();
-//      
+     
 //      ROS_INFO("Third Planning step");
-//      fixed_pose.position.x =  1.148;
-//      fixed_pose.position.y =  -2.216e-05;//00028645
-//      fixed_pose.position.z =  0.34273;//0.168;
-//      quat_msg.x = 0;
-//      quat_msg.y = 0;
-//      quat_msg.z = 0;
-//      quat_msg.w = 1;
+//      fixed_pose.position.x =  1.0501;
+//      fixed_pose.position.y =  -0.0043175;//00028645
+//      fixed_pose.position.z =  1.1634;//0.168;
+//      quat_msg.x = -0.20349;
+//      quat_msg.y = 0.39097;
+//      quat_msg.z = -0.41935;
+//      quat_msg.w = 0.79365;
 //     
      fixed_pose.orientation = quat_msg;
 
      std::cout << "get end effector link:"<< group.getEndEffectorLink()<<std::endl;
      //group.setPoseTarget(fixed_pose);
-     //group.setJointValueTarget(fixed_pose);
+     group.setJointValueTarget(fixed_pose);
      //-------------------------
-     //group.setGoalPositionTolerance(0.5);
-     //group.setGoalOrientationTolerance(0.5);
+     group.setGoalPositionTolerance(0);
+     group.setGoalOrientationTolerance(0);
      //group.setApproximateJointValueTarget(fixed_pose);
      // group.setRandomTarget();
      // plan the motion and then move the group to the sampled target 
      //sleep(1);
-     //group.move();
+     group.move();
      //sleep(5);
      ros::waitForShutdown();
 }
+
+//1.0501; -0.0043175; 1.1634
+//-0.20349; 0.39097; -0.41935; 0.79365
 
 //home position
 // 1.148; -2.216e-05; 0.34273

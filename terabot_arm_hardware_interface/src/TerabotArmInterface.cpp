@@ -26,8 +26,8 @@ TerabotArmInterface::TerabotArmInterface(ArRobot *_robot, ArTerabotArm *_arm, ro
     close_srv = n_.advertiseService("close_gripper", &TerabotArmInterface::close, this); // added for the gripper sevice 
     open_srv = n_.advertiseService("open_gripper" , &TerabotArmInterface::open, this); // added for the gripper service 
     
-    arm->grip(-100);
-    pos[5]=1;//0 refers to closed gripper
+    arm->grip(100);
+    pos[5]=0;//0 refers to closed gripper
     sleep(5);
 
     
@@ -286,6 +286,24 @@ void TerabotArmInterface::writeHW()
       }
       std::cout << "\n";
     }    
+    
+//     robot_model_loader::RobotModelLoader robot_model_loader("robot_description"); 
+//     moveit::core::RobotModelPtr kinematic_model = robot_model_loader.getModel();
+//     ROS_INFO("Model frame: %s", kinematic_model->getModelFrame().c_str());
+//     
+//     moveit::core::RobotStatePtr kinematic_state(new robot_state::RobotState(kinematic_model));
+//     kinematic_state->setToDefaultValues(); 
+//     const moveit::core::JointModelGroup* joint_model_group = kinematic_model->getJointModelGroup("arm");
+//     
+//      /* Compute FK for a set of random joint values*/
+//     kinematic_state->setToRandomPositions(joint_model_group);
+//     const Eigen::Affine3d &end_effector_state = kinematic_state->getGlobalLinkTransform("wrist_roll_link");
+//     
+//     /* Get the joint values*/
+//     std::vector<double> joint_values;
+//     kinematic_state->copyJointGroupPositions(joint_model_group, joint_values);
+
+    
     //used to flip the movement (will be fixed later)
      cmd[0]=-1*cmd[0];
     // moveArm function takes Degrees only as inputs

@@ -119,11 +119,11 @@
     </visual>
 
 
-    <collision>
+<!--    <collision>
       <geometry>
         <cylinder length="${364.49*BASE}" radius="0.05"/>
       </geometry>
-    </collision>
+    </collision>-->
 
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -161,11 +161,11 @@
       <material name="orange"/>
     </visual>
 
-    <collision>
+<!--    <collision>
       <geometry>
         <cylinder length="${364.49*BASE}" radius="0.05"/>
       </geometry>
-    </collision>
+    </collision>-->
 
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>

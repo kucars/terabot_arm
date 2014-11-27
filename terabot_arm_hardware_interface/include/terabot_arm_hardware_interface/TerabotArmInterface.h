@@ -26,6 +26,12 @@
 #define PI_ 3.14159265359
 #define DEG_TO_RAD PI_/180.0
 #define RAD_TO_DEG 180.0/PI_
+
+#include <moveit/robot_model_loader/robot_model_loader.h>
+#include <moveit_msgs/DisplayRobotState.h>
+#include <moveit_msgs/DisplayTrajectory.h>
+#include <moveit_msgs/RobotState.h>
+
 /*bool isEqual(double & a, double & b, double threshold)
 {
     return fabs(a-b)<threshold;
@@ -51,7 +57,7 @@ public:
     bool firstRead; 
     int readCounter;
 private:
-    static const unsigned int joint_number=6;
+    static const unsigned int joint_number=5;//6
     ArRobot *robot;
     ArTerabotArm *arm;
     ros::NodeHandle n_;
