@@ -180,7 +180,9 @@
  <!-- added end effector for calibration -->
   
  <joint name="end_effector_joint" type="fixed">
-   <origin xyz="0.09 ${wrist_roll_joint_z_offset} 0" rpy="0 0 0"/> <!-- original is 0.085 but we have the torque sensor...-->
+      <origin xyz="0.09 ${wrist_roll_joint_z_offset} 0" rpy="0 0 0"/>    <!-- before modifications -->
+<!--   <origin xyz="0.09 0.04 0.006" rpy="0 0 0"/> --><!-- original is 0.085 but we have the torque sensor...-->
+
       <axis xyz="0 0 1"/>
       <parent link="wrist_pitch_link"/>
       <child link="end_effector"/>
@@ -202,8 +204,9 @@
  <!-- modified the following part to add end_effector link (marker) for calibration -->
 
  <joint name="wrist_roll_joint" type="revolute">
-    <!-- origin xyz="${50*BASE+0.013+wrist_roll_joint_x_offset} ${wrist_roll_joint_z_offset} 0" rpy="0 ${PI/2} 0"/ -->
-     <origin xyz="0.07 0 0" rpy="0 ${PI/2} 0"/>
+   <!-- origin xyz="${50*BASE+0.013+wrist_roll_joint_x_offset} ${wrist_roll_joint_z_offset} 0" rpy="0 ${PI/2} 0"/ --> <!-- when the parent is wrist pitch joint -->
+        <origin xyz="0.07 0 0" rpy="0 ${PI/2} 0"/><!-- when the end effector is the parent -->
+  <!--   <origin xyz="0.07 -0.005 0" rpy="0 ${PI/2} 0"/>-->
     <axis xyz="0 0 1"/>
     <limit effort="1000.0" lower="${-170*(PI/180)}" upper="${170*(PI/180)}" velocity="0.5"/>
     <parent link="end_effector"/>
@@ -213,7 +216,9 @@
 
   <link name="wrist_roll_link">
     <visual>
-      <origin xyz="-0.0322 ${0.4*BASE+wrist_roll_link_y_offset} ${-18.5*BASE+wrist_roll_link_x_offset}" rpy="0 -${PI} ${3*PI/2}" />
+<!--      <origin xyz="-0.0322 ${0.4*BASE+wrist_roll_link_y_offset} ${-18.5*BASE+wrist_roll_link_x_offset}" rpy="0 -${PI} ${3*PI/2}" />--><!-- when the parent is wrist pitch joint -->
+<origin xyz="-0.0322 ${0.4*BASE+wrist_roll_link_y_offset} ${-18.5*BASE+wrist_roll_link_x_offset}" rpy="0 -${PI} ${3*PI/2}" /><!-- when the end effector is the parent -->
+<!--     <origin xyz="-0.0315 0 ${-18.5*BASE+wrist_roll_link_x_offset}" rpy="0 -${PI} ${3*PI/2}" />    -->
       <geometry>
         <mesh filename="package://terabot_description/meshes/wrist_roll.stl" scale="0.001 0.001 0.001"/>
       </geometry>

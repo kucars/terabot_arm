@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <launch>
 
   <!-- Load joint controller configurations from YAML file to parameter server -->
@@ -9,7 +10,7 @@
   <!-- convert joint states to TF transforms for rviz, etc -->
   <node ns="/terabot_arm" name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
     respawn="true" output="screen">
-    <!-- remap from="/joint_states" to="/terabot_arm/joint_states" / -->
+<!--     remap from="/joint_states" to="/terabot_arm/joint_states" / -->
   </node>
 
 </launch>
